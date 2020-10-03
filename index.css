@@ -57,6 +57,7 @@ main {
 .action {
     border: 1px solid red;
     width: 75%;
+    margin: 20px 0;
     height: max-content;
 }
 

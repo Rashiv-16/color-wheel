@@ -19,9 +19,9 @@ let colorTeller = (element) => {
 
 //Copies the colors on single click
 let colorCopier = (element) => {
-    let backColor = getComputedStyleSheet(element, "backgroundColor");
+    let colorValue = element.innerText
     const textArea = document.createElement('textarea');
-    textArea.value = backColor;
+    textArea.value = colorValue;
     document.body.appendChild(textArea);
     textArea.focus()
     textArea.select()
