@@ -11,9 +11,6 @@ let getComputedStyleSheet = (element, property) => {
     return styleComputed[property]
 }
 
-//setting initial activeBaseColor background color to baseColorPicker
-baseColorPicker.style.backgroundColor = getComputedStyleSheet(activeBaseColor, "backgroundColor")
-
 //Puts value of the color from the computedStyle to the element attribute title
 let colorTeller = (element) => {
     let backColor = getComputedStyleSheet(element, 'backgroundColor')
@@ -33,6 +30,27 @@ let colorCopier = (element) => {
     
 }
 
+//function to convert the rgb value into hex
+let rgbToHex = (rgbValue) => {
+    let rgbBuffer = [];
+    let hex = "#";
+    rgbBuffer = rgbValue.slice(4,-1).split(",");
+    rgbBuffer.forEach((rgb) => {
+        //Number converts the string data type rgb to Number
+        //toString(16) then convert that Number into hexadecimal string
+        //it also checks if the converted hex code is smaller than two digits
+        //if it is smaller then it will use padStart with target string length of two length and padding it with zero
+        hex = hex + (Number(rgb).toString(16).length < 2 ? Number(rgb).toString(16).padStart(2,0) : Number(rgb).toString(16))
+
+    })
+    return hex;
+}
+
+//puts the value of the background as the innerText in the element 
+let backgroundColorValue = (element, rgbValue) => {
+    element.innerText = rgbToHex(rgbValue);
+}
+
 //Adds and remove the class active-base-color to highlight the color and changes the baseColorPicker background color
 let classChanger = (e) => {
     baseColors.forEach((baseColor) => {
@@ -41,7 +59,7 @@ let classChanger = (e) => {
     e.target.classList.add('active-base-color');
     let backColor = getComputedStyleSheet(e.target, 'backgroundColor')
     baseColorPicker.style.backgroundColor = backColor
-
+    backgroundColorValue(baseColorPicker, backColor)
 }
 
 //Event listener on all the base colors
@@ -52,12 +70,14 @@ baseColors.forEach((baseColor) => {
 //setting title attribute on baseColors with their respective rgb color values
 colors.forEach((color)=> {
     colorTeller(color)
-
 })
 
+//Event listener on the baseColorPicker for copying the color when clicked
 baseColorPicker.addEventListener('click', (e) => {
     colorCopier(e.target);
 })
 
-
-// colorTeller(color)
+//setting initial activeBaseColor background color to baseColorPicker
+//setting initial activeBaseColor Background color value into hexadecimal string as innerText of the baseColorPicker
+baseColorPicker.style.backgroundColor = getComputedStyleSheet(activeBaseColor, "backgroundColor");
+backgroundColorValue(baseColorPicker, getComputedStyleSheet(activeBaseColor, "backgroundColor"))
