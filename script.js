@@ -3,7 +3,14 @@ let baseColors = document.querySelectorAll('.base-color > div')
 let harmonyColorsPickers = document.querySelectorAll('.harmony-colors-value > div')
 let baseColorPicker = document.querySelector('.base-color-value')
 let activeBaseColor = document.querySelector('.active-base-color');
+let dropDownArrow = document.querySelector('.down-key')
+let dropDownMainContainer = document.querySelector('.harmony-rules')
+let dropDownSlider = document.querySelector('.drop-down')
 
+dropDownMainContainer.addEventListener('click', (e) => {
+    dropDownArrow.classList.toggle('drop-down-arrow-animation')
+    dropDownSlider.classList.toggle('drop-down-animation')
+})
 
 //get computed style of the element with the specific property
 let getComputedStyleSheet = (element, property) => {
