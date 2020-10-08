@@ -2,12 +2,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-
 }
 
 body {
     background: linear-gradient(to right bottom, #333, #2a2a2a);
     /* width: 100vw; */
+    min-height: 100vh;
     height: max-content;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -48,7 +48,7 @@ main {
 }
 
 .main-content {
-    border: 1px solid gold;
+    /* border: 1px solid gold; */
     height: max-content;
 
     display: flex;
@@ -56,7 +56,7 @@ main {
 }
 
 .action {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 75%;
     margin: 20px 0;
     height: max-content;
@@ -69,7 +69,7 @@ main {
 
 .harmony-rules {
     outline: none;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -82,7 +82,7 @@ main {
     width: calc(100% - 15px);
     height: 100%;
 
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-flow: row nowrap;
 }
@@ -91,13 +91,13 @@ main {
     height: 20px;
     width: 100%;
     height: 100%;
-    border: 1px solid goldenrod;
+    /* border: 1px solid goldenrod; */
     display: flex;
     flex-flow: row nowrap;
 }
 .harmony-rules-values > div > div {
     height: 100%;
-    border: 1px solid goldenrod;
+    /* border: 1px solid goldenrod; */
     padding: 10px;
 }
 
@@ -145,7 +145,7 @@ main {
     top: 0;
     left: 0;
     overflow-y: scroll;
-    border: 1px solid slateblue;
+    /* border: 1px solid slateblue; */
     background-color: rgba(255, 255, 255, 0.5);
     scrollbar-width: 0;
     display: flex;
@@ -162,9 +162,21 @@ main {
     height: 20px;
     width: 100%;
     height: 100%;
-    border: 1px solid goldenrod;
+    border: 0.1px solid rgb(136, 136, 136);
+    padding: 5px 5px;
     display: flex;
     flex-flow: row nowrap;
+    cursor: pointer;
+    user-select: none;
+}
+
+.drop-down > div:hover {
+    background-color: rgb(135, 135, 135);
+    
+}
+
+.drop-down > div:active {
+    background-color: rgb(100, 100, 100);
 }
 
 .drop-down-values > div > div {
@@ -178,6 +190,7 @@ main {
     flex-flow: row nowrap;
     width: max-content;
 }
+
 
 .drop-down-values__color > div {
     height: 20px;
@@ -193,6 +206,7 @@ main {
     flex-grow: 2;
     text-align: right;
     color: white;
+    font-weight: 100;
     letter-spacing: 1.5px;
 }
 
@@ -213,6 +227,9 @@ main {
 .base-color, .harmony-rules, .color-wheel-container, .color-controls-container {
     max-width: 900px;
     width: 95%;
+}
+
+.harmony-rules {
     border: 1px solid white;
 }
 

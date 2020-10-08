@@ -7,6 +7,7 @@ let dropDownArrow = document.querySelector('.down-key')
 let dropDownMainContainer = document.querySelector('.harmony-rules')
 let dropDownSlider = document.querySelector('.drop-down')
 
+//event listener for drop down har*mony rules
 dropDownMainContainer.addEventListener('click', (e) => {
     dropDownArrow.classList.toggle('drop-down-arrow-animation')
     dropDownSlider.classList.toggle('drop-down-animation')
@@ -53,7 +54,7 @@ let rgbToHex = (rgbValue) => {
     return hex;
 }
 
-//puts the value of the background as the innerText in the element 
+//puts the value of the background as theinnerText in the element 
 let backgroundColorValue = (element, rgbValue) => {
     element.innerText = rgbToHex(rgbValue);
 }
