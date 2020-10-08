@@ -38,6 +38,40 @@ let colorCopier = (element) => {
     
 }
 
+//function to convert rgb to hsl
+let rgbToHsl = (rgbValue) => {
+    let rgbBuffer = [];
+    rgbBuffer = rgbValue.slice(4,-1).split(",");
+    let r = Number(rgbBuffer[0])/255;
+    let g = Number(rgbBuffer[1])/255;
+    let b = Number(rgbBuffer[2])/255;
+    let s = 0;
+    let h = 0;
+    let max = Math.max(r,g,b);
+    let min = Math.min(r,g,b);
+
+    //Luminance
+    let l = (max+min)/2;
+    let L = Math.round(l * 100);
+
+    //Saturation
+    if(min !== max) {
+        if(l <= 0.5) s=(max-min)/(max+min);
+        else s=(max-min)/(2.0-max-min);
+    }
+    let S = Math.round(s * 100);
+
+    //Hue
+    if( r === max) h= (g-b)/(max-min);
+    else if (g === max) h = 2.0 + (b-r)/(max-min);
+    else h=4.0 + (r-g)/(max-min);
+    let H = Math.round(h * 60);
+
+    return [H,S,L]
+}
+let hsl = rgbToHsl('rgb(24,98,118)')
+console.log(hsl)
+
 //function to convert the rgb value into hex
 let rgbToHex = (rgbValue) => {
     let rgbBuffer = [];
