@@ -6,8 +6,10 @@ let activeBaseColor = document.querySelector('.active-base-color');
 let dropDownArrow = document.querySelector('.down-key')
 let dropDownMainContainer = document.querySelector('.harmony-rules')
 let dropDownSlider = document.querySelector('.drop-down')
+let dropDownOptions = document.querySelectorAll('.drop-down > div')
+let activeHarmonyRuleElement = document.querySelectorAll('.active-harmony-rule > div')
 
-//event listener for drop down har*mony rules
+//event listener for drop down harmony rules
 dropDownMainContainer.addEventListener('click', (e) => {
     dropDownArrow.classList.toggle('drop-down-arrow-animation')
     dropDownSlider.classList.toggle('drop-down-animation')
@@ -66,11 +68,11 @@ let rgbToHsl = (rgbValue) => {
     else if (g === max) h = 2.0 + (b-r)/(max-min);
     else h=4.0 + (r-g)/(max-min);
     let H = Math.round(h * 60);
+    if(H < 0) H = H + 360;
 
     return [H,S,L]
 }
 let hsl = rgbToHsl('rgb(24,98,118)')
-console.log(hsl)
 
 //function to convert the rgb value into hex
 let rgbToHex = (rgbValue) => {
@@ -88,9 +90,37 @@ let rgbToHex = (rgbValue) => {
     return hex;
 }
 
-//puts the value of the background as theinnerText in the element 
+//puts the value of the background as the innerText in the element 
 let backgroundColorValue = (element, rgbValue) => {
     element.innerText = rgbToHex(rgbValue);
+}
+
+//
+let assignHarmonyRules = (activeColor) => {
+
+    let rawHSL = rgbToHsl(activeColor);
+    let rawRGB = activeColor.slice(4,-1).split(",");
+    complimentaryColor(rawRGB);
+    splitComplimentary(rawRGB)
+
+
+
+}
+
+//complementary color function
+let complimentaryColor = (rgbColor) => {
+    let complimentaryElement = document.querySelector('.complementary-one > div')
+
+    let color = [];
+    color = rgbColor.map((color) => {
+        return 255 - color
+    })
+    complimentaryElement.style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`
+}
+
+//splitComplimentary colors function
+let splitComplimentary = (rgbColor) => {
+
 }
 
 //Adds and remove the class active-base-color to highlight the color and changes the baseColorPicker background color
@@ -102,6 +132,7 @@ let classChanger = (e) => {
     let backColor = getComputedStyleSheet(e.target, 'backgroundColor')
     baseColorPicker.style.backgroundColor = backColor
     backgroundColorValue(baseColorPicker, backColor)
+    assignHarmonyRules(backColor)
 }
 
 //Event listener on all the base colors
@@ -117,6 +148,12 @@ colors.forEach((color)=> {
 //Event listener on the baseColorPicker for copying the color when clicked
 baseColorPicker.addEventListener('click', (e) => {
     colorCopier(e.target);
+})
+
+dropDownOptions.forEach((dropDownOption) => {
+    dropDownOption.addEventListener('click', (e) => {
+        console.log(e.currentTarget.firstElementChild.children)
+    })
 })
 
 //setting initial activeBaseColor background color to baseColorPicker
