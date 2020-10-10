@@ -28,6 +28,8 @@ main {
     justify-content: center;
     align-items: center;
 
+    align-self: flex-start;
+
     margin: 30px;
 }
 
@@ -110,7 +112,8 @@ main {
 .harmony-rules-values__color > div {
     height: 20px;
     width: 20px;
-    border: 1px solid red;
+    visibility: hidden;
+    transition: 0.3s background-color ease;
 }
 
 .harmony-rules-values__color > div:not(:first-child) {
@@ -147,7 +150,7 @@ main {
     overflow-y: scroll;
     /* border: 1px solid slateblue; */
     background-color: rgba(255, 255, 255, 0.5);
-    scrollbar-width: 0;
+    scrollbar-width: none;
     display: flex;
     flex-flow: column nowrap;
     transform: translateY(-30px);
@@ -195,7 +198,6 @@ main {
 .drop-down-values__color > div {
     height: 20px;
     width: 20px;
-    border: 1px solid red;
 }
 
 .drop-down-values__color > div:not(:first-child) {
@@ -206,6 +208,7 @@ main {
     flex-grow: 2;
     text-align: right;
     color: white;
+    /* text-shadow: 0 2px 10px black, 0 -2px 10px black; */
     font-weight: 100;
     letter-spacing: 1.5px;
 }
@@ -234,7 +237,7 @@ main {
 }
 
 .color-wheel-container {
-    border: 1px solid indianred;
+    border: 1px solid red;
     height: 300px;
     position: relative;
 }
@@ -267,7 +270,6 @@ main {
 .harmony-colors-value > div, .base-color-value {
     width: 100%;
     height: 30px;
-    background-color: salmon;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -284,6 +286,10 @@ main {
 
     transition: 0.5s background-color ease;
     will-change: background-color;
+}
+
+.harmony-colors-value > div {
+    visibility: hidden;
 }
 
 .harmony-colors-value > div:hover p, .base-color-value:hover p{

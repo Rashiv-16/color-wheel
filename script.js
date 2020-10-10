@@ -8,12 +8,29 @@ let dropDownMainContainer = document.querySelector('.harmony-rules')
 let dropDownSlider = document.querySelector('.drop-down')
 let dropDownOptions = document.querySelectorAll('.drop-down > div')
 let activeHarmonyRuleElement = document.querySelectorAll('.active-harmony-rule > div')
+let activeHarmonyRuleElementName = document.querySelector('.harmony-rules-values__name')
+let harmonyRulesContainer = document.querySelector('.harmony-rules-values')
+let updatedColor = []
 
-//event listener for drop down harmony rules
-dropDownMainContainer.addEventListener('click', (e) => {
+let complimentaryElement = document.querySelectorAll('.complementary > div')
+let splitComplimentaryElement = document.querySelectorAll('.split-complementary > div')
+let analogousElement = document.querySelectorAll('.analogous > div')
+let monochromaticElement = document.querySelectorAll('.monochromatic > div')
+let shadesElement = document.querySelectorAll('.shades > div')
+let triadElement = document.querySelectorAll('.triad > div')
+let tetradElement = document.querySelectorAll('.tetrad > div')
+let compoundElement = document.querySelectorAll('.compound > div')
+let highContrastElement = document.querySelectorAll('.high-contrast > div')
+let pentagramElement = document.querySelectorAll('.pentagram > div')
+
+
+//drop down harmony rules event handler
+let dropDownMainContainerHandler = (e) => {
     dropDownArrow.classList.toggle('drop-down-arrow-animation')
     dropDownSlider.classList.toggle('drop-down-animation')
-})
+}
+//event listener for drop down harmony rules
+dropDownMainContainer.addEventListener('click', dropDownMainContainerHandler)
 
 //get computed style of the element with the specific property
 let getComputedStyleSheet = (element, property) => {
@@ -72,7 +89,6 @@ let rgbToHsl = (rgbValue) => {
 
     return [H,S,L]
 }
-let hsl = rgbToHsl('rgb(24,98,118)')
 
 //function to convert the rgb value into hex
 let rgbToHex = (rgbValue) => {
@@ -95,33 +111,249 @@ let backgroundColorValue = (element, rgbValue) => {
     element.innerText = rgbToHex(rgbValue);
 }
 
-//
+//fills the harmony rules with colors
 let assignHarmonyRules = (activeColor) => {
 
     let rawHSL = rgbToHsl(activeColor);
     let rawRGB = activeColor.slice(4,-1).split(",");
-    complimentaryColor(rawRGB);
-    splitComplimentary(rawRGB)
+    complementaryColor(rawRGB);
+    splitComplementaryColors(rawHSL);
+    analogousColors(rawHSL)
+    monochromaticColors(rawHSL)
+    shadesColors(rawHSL)
+    triadColors(rawHSL)
+    tetradColors(rawHSL)
+    // compoundColors()
+    // highContrastColors()
+    pentagramColors(rawHSL)
 
+    switch(harmonyRulesContainer.id) {
+        case 'complementary':
+            for( let i=0; i<complimentaryElement.length; i++) {
+                activeHarmonyRuleElement[i].style.visibility = 'visible'
+                let backColor = getComputedStyleSheet(complimentaryElement[i], 'background-color');
+                activeHarmonyRuleElement[i].style.backgroundColor = backColor;
 
+                harmonyColorsPickers[i].style.visibility = 'visible'
+                harmonyColorsPickers[i].style.backgroundColor = backColor;
+                harmonyColorsPickers[i].innerText = rgbToHex(backColor)
+            }
+        break;
+        case 'splitComplementary':
+            for( let i=0; i<splitComplimentaryElement.length; i++) {
+                activeHarmonyRuleElement[i].style.visibility = 'visible'
+                let backColor = getComputedStyleSheet(splitComplimentaryElement[i], 'background-color');
+                activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+
+                harmonyColorsPickers[i].style.visibility = 'visible'
+                harmonyColorsPickers[i].style.backgroundColor = backColor;
+                harmonyColorsPickers[i].innerText = rgbToHex(backColor)
+            }
+        break;
+
+        case 'analogous':
+            for( let i=0; i<analogousElement.length; i++) {
+                activeHarmonyRuleElement[i].style.visibility = 'visible'
+                let backColor = getComputedStyleSheet(analogousElement[i], 'background-color');
+                activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+
+                harmonyColorsPickers[i].style.visibility = 'visible'
+                harmonyColorsPickers[i].style.backgroundColor = backColor;
+                harmonyColorsPickers[i].innerText = rgbToHex(backColor)
+            }
+        break;
+
+        case 'monochromatic':
+            for( let i=0; i<monochromaticElement.length; i++) {
+                activeHarmonyRuleElement[i].style.visibility = 'visible'
+                let backColor = getComputedStyleSheet(monochromaticElement[i], 'background-color');
+                activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+
+                harmonyColorsPickers[i].style.visibility = 'visible'
+                harmonyColorsPickers[i].style.backgroundColor = backColor;
+                harmonyColorsPickers[i].innerText = rgbToHex(backColor)
+            }
+        break;
+
+        case 'shades':
+            for( let i=0; i<shadesElement.length; i++) {
+                activeHarmonyRuleElement[i].style.visibility = 'visible'
+                let backColor = getComputedStyleSheet(shadesElement[i], 'background-color');
+                activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+
+                harmonyColorsPickers[i].style.visibility = 'visible'
+                harmonyColorsPickers[i].style.backgroundColor = backColor;
+                harmonyColorsPickers[i].innerText = rgbToHex(backColor)
+            }
+        break;
+        case 'triad':
+            for( let i=0; i<triadElement.length; i++) {
+                activeHarmonyRuleElement[i].style.visibility = 'visible'
+                let backColor = getComputedStyleSheet(triadElement[i], 'background-color');
+                activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+
+                harmonyColorsPickers[i].style.visibility = 'visible'
+                harmonyColorsPickers[i].style.backgroundColor = backColor;
+                harmonyColorsPickers[i].innerText = rgbToHex(backColor)
+                console.log('pop')
+            }
+        break;
+        case 'tetrad':
+            for( let i=0; i<tetradElement.length; i++) {
+                activeHarmonyRuleElement[i].style.visibility = 'visible'
+                let backColor = getComputedStyleSheet(tetradElement[i], 'background-color');
+                activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+
+                harmonyColorsPickers[i].style.visibility = 'visible'
+                harmonyColorsPickers[i].style.backgroundColor = backColor;
+                harmonyColorsPickers[i].innerText = rgbToHex(backColor)
+            }
+        break;
+        case 'pentagram':
+            for( let i=0; i<pentagramElement.length; i++) {
+                activeHarmonyRuleElement[i].style.visibility = 'visible'
+                let backColor = getComputedStyleSheet(pentagramElement[i], 'background-color');
+                activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+
+                harmonyColorsPickers[i].style.visibility = 'visible'
+                harmonyColorsPickers[i].style.backgroundColor = backColor;
+                harmonyColorsPickers[i].innerText = rgbToHex(backColor)
+            }
+        break;
+    }
 
 }
 
 //complementary color function
-let complimentaryColor = (rgbColor) => {
-    let complimentaryElement = document.querySelector('.complementary-one > div')
+let complementaryColor = (rgbColor) => {
 
     let color = [];
     color = rgbColor.map((color) => {
         return 255 - color
     })
-    complimentaryElement.style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`
+    complimentaryElement[0].style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`
+    complimentaryElement[0].setAttribute('title', `rgb(${color[0]},${color[1]},${color[2]})`)
 }
 
 //splitComplimentary colors function
-let splitComplimentary = (rgbColor) => {
+let splitComplementaryColors = (hslColor) => {
+    let color = [];
 
+    color.push(hslColor[0] + 150 - 360);
+    color.push(hslColor[0] + 210 - 360);
+
+    let backColor = color.map((c)=> {
+        return `hsl(${c}, ${hslColor[1]}%, ${hslColor[2]}%)`
+    })
+
+    for(let i=0; i < backColor.length; i++) {
+        splitComplimentaryElement[i].style.backgroundColor = backColor[i];
+        splitComplimentaryElement[i].setAttribute('title', getComputedStyleSheet(splitComplimentaryElement[i], 'background-color'))
+    }
 }
+
+//analogous colors function
+let analogousColors = (hslColor) => {
+    let color = [];
+
+    color.push(hslColor[0] + 30 - 360);
+    color.push(hslColor[0] + 60 - 360);
+    color.push(hslColor[0] + 90 - 360);
+
+    let backColor = color.map((c)=> {
+        return `hsl(${c}, ${hslColor[1]}%, ${hslColor[2]}%)`
+    })
+
+    for(let i=0; i < backColor.length; i++) {
+        analogousElement[i].style.backgroundColor = backColor[i];
+        analogousElement[i].setAttribute('title', getComputedStyleSheet(analogousElement[i], 'background-color'))
+    }
+}
+
+//monochromatic colors function
+let monochromaticColors = (hslColor) => {
+    let color = [];
+
+    for(let i=90; i>0; i=i-25) {
+        color.push(`hsl(${hslColor[0]}, ${i}%, ${hslColor[2]}%)`)
+    }
+
+    for(let i=0; i < color.length; i++) {
+        monochromaticElement[i].style.backgroundColor = color[i];
+        monochromaticElement[i].setAttribute('title', getComputedStyleSheet(monochromaticElement[i], 'background-color'))
+    }
+}
+
+//shades colors function
+let shadesColors = (hslColor) => {
+    let color = [];
+
+    for(let i=90; i>0; i=i-25) {
+        color.push(`hsl(${hslColor[0]}, ${hslColor[1]}%, ${i}%)`)
+    }
+
+    for(let i=0; i < color.length; i++) {
+        shadesElement[i].style.backgroundColor = color[i];
+        shadesElement[i].setAttribute('title', getComputedStyleSheet(shadesElement[i], 'background-color'))
+    }
+}
+
+//triad colors function
+let triadColors = (hslColor) => {
+    let color = [];
+
+    color.push(hslColor[0] + 120 - 360);
+    color.push(hslColor[0] + 240 - 360);
+
+    let backColor = color.map((c)=> {
+        return `hsl(${c}, ${hslColor[1]}%, ${hslColor[2]}%)`
+    })
+
+    for(let i=0; i < backColor.length; i++) {
+        triadElement[i].style.backgroundColor = backColor[i];
+        triadElement[i].setAttribute('title', getComputedStyleSheet(triadElement[i], 'background-color'))
+    }
+}
+
+//tetrad colors function
+let tetradColors = (hslColor) => {
+    let color = [];
+
+    color.push(hslColor[0] + 90 - 360);
+    color.push(hslColor[0] + 180 - 360);
+    color.push(hslColor[0] + 270 - 360);
+
+    let backColor = color.map((c)=> {
+        return `hsl(${c}, ${hslColor[1]}%, ${hslColor[2]}%)`
+    })
+
+    for(let i=0; i < backColor.length; i++) {
+        tetradElement[i].style.backgroundColor = backColor[i];
+        tetradElement[i].setAttribute('title', getComputedStyleSheet(tetradElement[i], 'background-color'))
+    }
+}
+
+//pentagram colors function
+let pentagramColors = (hslColor) => {
+    let color = [];
+    let h = hslColor[0];
+
+    for (let i=0; i<5; i++) {
+        color.push(h)
+        h = h + 72 -360;
+        console.log(h)
+    }
+
+    let backColor = color.map((c)=> {
+        return `hsl(${c}, ${hslColor[1]}%, ${hslColor[2]}%)`
+    })
+
+    for(let i=0; i < backColor.length; i++) {
+        pentagramElement[i].style.backgroundColor = backColor[i];
+        pentagramElement[i].setAttribute('title', getComputedStyleSheet(pentagramElement[i], 'background-color'))
+    }
+}
+
 
 //Adds and remove the class active-base-color to highlight the color and changes the baseColorPicker background color
 let classChanger = (e) => {
@@ -150,9 +382,44 @@ baseColorPicker.addEventListener('click', (e) => {
     colorCopier(e.target);
 })
 
+//Event listener on the harmonyColorsPickers for copying the color when clicked
+harmonyColorsPickers.forEach((harmonyColorsPicker) => {
+    harmonyColorsPicker.addEventListener('click', (e)=> {
+        colorCopier(e.target);
+    })
+})
+
+//event listener on the dropDownOptions it also selects what to show on harmony color elements and updates the color value in the copied value elements
 dropDownOptions.forEach((dropDownOption) => {
     dropDownOption.addEventListener('click', (e) => {
-        console.log(e.currentTarget.firstElementChild.children)
+        let firstChild = e.currentTarget.firstElementChild
+        let childrenFirst = firstChild.children
+        let lastChild = e.currentTarget.lastElementChild
+
+        //sets visibility to visible according to length of children of firt child
+        //and also sets the color accordingly
+        for(let i=0; i<childrenFirst.length; i++) {
+            activeHarmonyRuleElement[i].style.visibility = 'visible'
+            let backColor = getComputedStyleSheet(childrenFirst[i], 'background-color');
+            // activeHarmonyRuleElement[i].setAttribute('title', backColor)
+            activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+            activeHarmonyRuleElement[i].setAttribute('title', backColor)
+            harmonyColorsPickers[i].style.visibility = 'visible'
+            harmonyColorsPickers[i].style.backgroundColor = backColor;
+        }
+
+        console.log(firstChild.id)
+        harmonyRulesContainer.id = firstChild.id
+
+        //sets the visibility to hidden of the unused elements in active harmony values
+        for(let i=4; i>=childrenFirst.length; i--) {
+            activeHarmonyRuleElement[i].style.visibility = 'hidden'
+            harmonyColorsPickers[i].style.visibility = 'hidden'
+        }
+        activeHarmonyRuleElementName.innerText = lastChild.innerText;
+        activeBaseColor = document.querySelector('.active-base-color');
+        assignHarmonyRules(getComputedStyleSheet(activeBaseColor, "backgroundColor"))
+        dropDownMainContainerHandler()
     })
 })
 
@@ -160,3 +427,6 @@ dropDownOptions.forEach((dropDownOption) => {
 //setting initial activeBaseColor Background color value into hexadecimal string as innerText of the baseColorPicker
 baseColorPicker.style.backgroundColor = getComputedStyleSheet(activeBaseColor, "backgroundColor");
 backgroundColorValue(baseColorPicker, getComputedStyleSheet(activeBaseColor, "backgroundColor"))
+//setting initial active harmony rule to copied value and the the harmony rule element
+assignHarmonyRules(getComputedStyleSheet(activeBaseColor, "backgroundColor"))
+activeHarmonyRuleElement[0].setAttribute('title', getComputedStyleSheet(activeBaseColor, "backgroundColor"))
