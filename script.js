@@ -341,7 +341,6 @@ let pentagramColors = (hslColor) => {
     for (let i=0; i<5; i++) {
         color.push(h)
         h = h + 72 -360;
-        console.log(h)
     }
 
     let backColor = color.map((c)=> {
