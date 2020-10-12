@@ -2,6 +2,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.range {
+    background-color: white;
+    color: green;
 }
 
 body {
