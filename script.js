@@ -23,6 +23,9 @@ let compoundElement = document.querySelectorAll('.compound > div')
 let highContrastElement = document.querySelectorAll('.high-contrast > div')
 let pentagramElement = document.querySelectorAll('.pentagram > div')
 
+let colorSystemButton = document.querySelector('.color-system-button')
+let colorSystem = document.querySelector('.color-system')
+
 
 //drop down harmony rules event handler
 let dropDownMainContainerHandler = (e) => {
@@ -387,6 +390,19 @@ harmonyColorsPickers.forEach((harmonyColorsPicker) => {
         colorCopier(e.target);
     })
 })
+
+colorSystemButton.addEventListener('click', (e) => {
+    e.stopPropagation()
+    colorSystem.classList.add('color-system-open');
+    console.log('y8')
+})
+
+colorSystem.addEventListener('click', (e) => {
+    e.stopPropagation()
+    colorSystem.classList.remove('color-system-open');
+}, false)
+
+let yolo = document.querySelector('*:not(.)')
 
 //event listener on the dropDownOptions it also selects what to show on harmony color elements and updates the color value in the copied value elements
 dropDownOptions.forEach((dropDownOption) => {
