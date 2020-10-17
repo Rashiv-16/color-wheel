@@ -156,10 +156,11 @@ main {
     scrollbar-width: none;
     display: flex;
     flex-flow: column nowrap;
-    transform: translateY(-30px);
+    transform-origin: top;
+    transform: translateY(-10px) scaleY(0.1);
     opacity: 0;
     z-index: -1;
-    transition: 0.3s transform ease,
+    transition: 0.4s transform ease,
                 0.3s opacity ease;
     will-change: transform, opacity;
 }
@@ -226,7 +227,7 @@ main {
 
 .drop-down-animation {
     opacity: 1;
-    transform: translateY(-10px);
+    transform: translateY(-10px) scaleY(1);
     z-index: 1;
 }
 
@@ -292,12 +293,10 @@ main {
 .control-panel > div > div {
     width: 80%;
     height: 25px;
-    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 10px;
-}
-
-.control-panel > div > div:hover {
-    cursor: pointer;
 }
 
 .control-panel > div > input {
@@ -320,7 +319,8 @@ main {
 }
 
 .control-panel > div > p {
-    font-weight: 600;
+    /* font-weight: 600; */
+    color: white;
 }
 
 .control-panel > div > .hex-code {
@@ -330,7 +330,7 @@ main {
 }
 
 .control-panel > div > .color-system-button {
-    background-color: red;
+    /* background-color: red; */
     margin: 0;
     width: 30px;
     height: 20px;
@@ -344,12 +344,30 @@ main {
     width: 45.5px;
 }
 
+.control-panel > div > .color-system-button {
+    cursor: pointer;
+}
+
 .control-panel > div > .color-system-button:hover {
     background-color: rgb(70, 70, 70);
 }
 .control-panel > div > .color-system-button:active {
     background-color: rgb(60, 60, 60);
 }
+
+#first-slider, #second-slider, #third-slider {
+    width: 100%;
+    cursor: pointer;
+    /* -webkit-appearance: none; */
+}
+
+/* #first-slider::-webkit-slider-runnable-track {
+    height: 5px;
+}
+#first-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+} */
 
 .color-system-button > span {
     width: 100%;

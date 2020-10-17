@@ -182,20 +182,26 @@
                   <div class="control-panel">
                     <div class="first-component">
                       <p>R</p>
-                      <div class="r"></div>
-                      <input type="text" placeholder="R" maxlength="3">
+                      <div class="r">
+                        <input id="first-slider" type="range" min="0" max="255" step="1" >
+                      </div>
+                      <input id="first-value" type="text" placeholder="R" maxlength="3">
                       <p></p>
                     </div>
                     <div class="second-component">
                       <p>G</p>
-                      <div class="g"></div>
-                      <input type="text" placeholder="G" maxlength="3">
+                      <div class="g">
+                        <input id="second-slider" type="range" min="0" max="255" step="1">
+                      </div>
+                      <input id="second-value" type="text" placeholder="G" maxlength="3">
                       <p></p>
                     </div>
                     <div class="third-component">
                       <p>B</p>
-                      <div class="b"></div>
-                      <input type="text" placeholder="B" maxlength="3">
+                      <div class="b">
+                        <input id="third-slider" type="range" min="0" max="255" step="1">
+                      </div>
+                      <input id="third-value" type="text" placeholder="B" maxlength="3">
                       <p></p>
                     </div>
                     <div>
@@ -208,7 +214,7 @@
                           <p id="HSL">HSL</p>
                         </div>
                       </div>
-                      <input class="hex-code" type="text" placeholder="Hex code" maxlength="7">
+                      <input id="hex-value" class="hex-code" type="text" placeholder="Hex code" maxlength="7">
                     </div>
                   </div>
                 </div>

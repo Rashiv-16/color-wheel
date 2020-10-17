@@ -26,6 +26,16 @@ let pentagramElement = document.querySelectorAll('.pentagram > div')
 let colorSystemButton = document.querySelector('.color-system-button')
 let colorSystem = document.querySelector('.color-system')
 
+let firstSlider = document.getElementById('first-slider')
+let secondSlider = document.getElementById('second-slider')
+let thirdSlider = document.getElementById('third-slider')
+
+let firstValue = document.getElementById('first-value')
+let secondValue = document.getElementById('second-value')
+let thirdValue = document.getElementById('third-value')
+
+let hexValue = document.getElementById('hex-value')
+
 
 //drop down harmony rules event handler
 let dropDownMainContainerHandler = (e) => {
@@ -57,7 +67,6 @@ let colorCopier = (element) => {
     textArea.select()
     document.execCommand('copy');
     document.body.removeChild(textArea)
-    
 }
 
 //function to convert rgb to hsl
@@ -391,6 +400,7 @@ harmonyColorsPickers.forEach((harmonyColorsPicker) => {
     })
 })
 
+//Color System Button Eventt Listeners
 colorSystemButton.addEventListener('click', (e) => {
     e.stopPropagation()
     colorSystem.classList.add('color-system-open');
@@ -402,7 +412,16 @@ colorSystem.addEventListener('click', (e) => {
     colorSystem.classList.remove('color-system-open');
 }, false)
 
-let yolo = document.querySelector('*:not(.)')
+firstSlider.addEventListener('input', () => {
+    firstValue.value = firstSlider.value
+})
+
+
+
+
+
+
+
 
 //event listener on the dropDownOptions it also selects what to show on harmony color elements and updates the color value in the copied value elements
 dropDownOptions.forEach((dropDownOption) => {
