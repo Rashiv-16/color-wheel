@@ -265,6 +265,7 @@ main {
 
 .selected-color > div {
     background-color: rebeccapurple;
+    border: 1px solid rgb(75, 75, 75);
     height: 64%;
     width: 80%;
     max-width: 110px;
@@ -274,7 +275,6 @@ main {
 .control-panel {
     width: 75%;
     height: 100%;
-    /* border: 1px solid rgb(243, 243, 243); */
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -355,7 +355,7 @@ main {
     background-color: rgb(60, 60, 60);
 }
 
-#first-slider, #second-slider, #third-slider {
+#first-slider-r, #second-slider-g, #third-slider-b, #first-slider-h, #second-slider-s, #third-slider-l {
     width: 100%;
     cursor: pointer;
     /* -webkit-appearance: none; */

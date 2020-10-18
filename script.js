@@ -26,15 +26,25 @@ let pentagramElement = document.querySelectorAll('.pentagram > div')
 let colorSystemButton = document.querySelector('.color-system-button')
 let colorSystem = document.querySelector('.color-system')
 
-let firstSlider = document.getElementById('first-slider')
-let secondSlider = document.getElementById('second-slider')
-let thirdSlider = document.getElementById('third-slider')
+let firstSliderR = document.getElementById('first-slider-r')
+let secondSliderG = document.getElementById('second-slider-g')
+let thirdSliderB = document.getElementById('third-slider-b')
 
-let firstValue = document.getElementById('first-value')
-let secondValue = document.getElementById('second-value')
-let thirdValue = document.getElementById('third-value')
+let firstValueR = document.getElementById('first-value-r')
+let secondValueG = document.getElementById('second-value-g')
+let thirdValueB = document.getElementById('third-value-b')
+
+let firstSliderH = document.getElementById('first-slider-h')
+let secondSliderS = document.getElementById('second-slider-s')
+let thirdSliderL = document.getElementById('third-slider-l')
+
+let firstValueH = document.getElementById('first-value-h')
+let secondValueS = document.getElementById('second-value-s')
+let thirdValueL = document.getElementById('third-value-l')
 
 let hexValue = document.getElementById('hex-value')
+
+let selectedValue = document.querySelector('.selected-color > div')
 
 
 //drop down harmony rules event handler
@@ -135,8 +145,6 @@ let assignHarmonyRules = (activeColor) => {
     shadesColors(rawHSL)
     triadColors(rawHSL)
     tetradColors(rawHSL)
-    // compoundColors()
-    // highContrastColors()
     pentagramColors(rawHSL)
 
     switch(harmonyRulesContainer.id) {
@@ -400,23 +408,163 @@ harmonyColorsPickers.forEach((harmonyColorsPicker) => {
     })
 })
 
+let system = "RGB"
+let rgbElements = document.querySelectorAll('.RGB')
+let hslElements = document.querySelectorAll('.HSL')
+
 //Color System Button Eventt Listeners
 colorSystemButton.addEventListener('click', (e) => {
     e.stopPropagation()
+
     colorSystem.classList.add('color-system-open');
     console.log('y8')
 })
 
 colorSystem.addEventListener('click', (e) => {
+    console.log(e.target.id)
     e.stopPropagation()
+    if (e.target.id === 'RGB') {
+        system = 'RGB'
+        rgbElements.forEach((rgbElement) => {
+            rgbElement.style.display = 'flex'
+        })
+        hslElements.forEach((hslElement) => {
+            hslElement.style.display = 'none'
+        })
+    } else {
+        system = 'HSL'
+        rgbElements.forEach((rgbElement) => {
+            rgbElement.style.display = 'none'
+        })
+        hslElements.forEach((hslElement) => {
+            hslElement.style.display = 'flex'
+        })
+    }
     colorSystem.classList.remove('color-system-open');
 }, false)
 
-firstSlider.addEventListener('input', () => {
-    firstValue.value = firstSlider.value
+////////////////////////////////RGB SYSTEM
+
+firstSliderR.addEventListener('input', () => {
+    firstValueR.value = firstSliderR.value
+    selectedValue.style.backgroundColor = `rgb(${firstSliderR.value},${secondSliderG.value},${thirdSliderB.value})`
+    hexCodeFunction()
+})
+secondSliderG.addEventListener('input', () => {
+    secondValueG.value = secondSliderG.value
+    selectedValue.style.backgroundColor = `rgb(${firstSliderR.value},${secondSliderG.value},${thirdSliderB.value})`
+    hexCodeFunction()
+})
+thirdSliderB.addEventListener('input', () => {
+    thirdValueB.value = thirdSliderB.value
+    selectedValue.style.backgroundColor = `rgb(${firstSliderR.value},${secondSliderG.value},${thirdSliderB.value})`
+    hexCodeFunction()
+})
+
+firstValueR.addEventListener('input', () => {
+    if(firstValueR.value > 255) {
+        firstValueR.setCustomValidity('Value should be between 0 and 255');
+        firstValueR.reportValidity()
+    } else {
+        firstValueR.setCustomValidity('');
+        firstSliderR.value = firstValueR.value
+        selectedValue.style.backgroundColor = `rgb(${firstValueR.value},${secondValueG.value},${thirdValueB.value})`
+        hexCodeFunction()
+    }
+})
+secondValueG.addEventListener('input', () => {
+    if(secondValueG.value > 255) {
+        secondValueG.setCustomValidity('Value should be between 0 and 255');
+        secondValueG.reportValidity()
+    } else {
+        secondValueR.setCustomValidity('');
+        secondSliderG.value =secondValueG.value
+        selectedValue.style.backgroundColor = `rgb(${firstValueR.value},${secondValueG.value},${thirdValueB.value})`
+        hexCodeFunction()
+    }
+})
+thirdValueB.addEventListener('input', () => {
+    if(thirdValueB.value > 255) {
+        thirdValueB.setCustomValidity('Value should be between 0 and 255');
+        thirdValueB.reportValidity()
+    } else {
+        thirdValueB.setCustomValidity('');
+        thirdSliderB.value =thirdValueB.value
+        selectedValue.style.backgroundColor = `rgb(${firstValueR.value},${secondValueG.value},${thirdValueB.value})`
+        hexCodeFunction()
+    }
+})
+
+///////////////////////////////////////HSL SYSTEM
+
+firstSliderH.addEventListener('input', () => {
+    firstValueH.value = firstSliderH.value
+    selectedValue.style.backgroundColor = `hsl(${firstSliderH.value},${secondSliderS.value}%,${thirdSliderL.value}%)`
+    hexCodeFunction()
+})
+secondSliderS.addEventListener('input', () => {
+    secondValueS.value = secondSliderS.value
+    selectedValue.style.backgroundColor = `hsl(${firstSliderH.value},${secondSliderS.value}%,${thirdSliderL.value}%)`
+    hexCodeFunction()
+})
+thirdSliderL.addEventListener('input', () => {
+    thirdValueL.value = thirdSliderL.value
+    selectedValue.style.backgroundColor = `hsl(${firstSliderH.value},${secondSliderS.value}%,${thirdSliderL.value}%)`
+    hexCodeFunction()
+})
+
+firstValueH.addEventListener('input', () => {
+    if(firstValueH.value > 360) {
+        firstValueH.setCustomValidity('Value should be between 0 and 360');
+        firstValueH.reportValidity()
+    } else {
+        firstValueH.setCustomValidity('');
+        firstSliderH.value = firstValueH.value
+        selectedValue.style.backgroundColor = `hsl(${firstValueH.value},${secondValueS.value}%,${thirdValueL.value}%)`
+        hexCodeFunction()
+    }
+})
+secondValueS.addEventListener('input', () => {
+    if(secondValueS.value > 100) {
+        secondValueS.setCustomValidity('Value should be between 0 and 100');
+        secondValueS.reportValidity()
+    } else {
+        secondValueS.setCustomValidity('');
+        secondSliderS.value =secondValueS.value
+        selectedValue.style.backgroundColor = `hsl(${firstValueH.value},${secondValueS.value}%,${thirdValueL.value}%)`
+        hexCodeFunction()
+    }
+})
+thirdValueL.addEventListener('input', () => {
+    if(thirdValueL.value > 100) {
+        thirdValueL.setCustomValidity('Value should be between 0 and 100');
+        thirdValueL.reportValidity()
+    } else {
+        thirdValueL.setCustomValidity('');
+        thirdSliderL.value =thirdValueL.value
+        selectedValue.style.backgroundColor = `hsl(${firstValueH.value},${secondValueS.value}%,${thirdValueL.value}%)`
+        hexCodeFunction()
+    }
+})
+
+hexValue.addEventListener('input', () => {
+    if(hexValue.value.length === 7 || hexValue.value.length === 4) {
+        let validation = /^#(?:[0-9a-f]{3}){1,2}$/i
+        if(validation.test(hexValue.value)) {
+            hexValue.setCustomValidity("")
+        } else {
+            hexValue.setCustomValidity("Invalid Hex Code")
+            hexValue.reportValidity()
+        }
+    }
 })
 
 
+
+let hexCodeFunction = () => {
+    if(system === 'RGB') hexValue.value = rgbToHex(`rgb(${firstValueR.value},${secondValueG.value},${thirdValueB.value})`);
+    else hexValue.value = rgbToHex(getComputedStyleSheet(selectedValue, 'background-color'))    
+}
 
 
 

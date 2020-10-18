@@ -180,30 +180,52 @@
                     <div></div>
                   </div>
                   <div class="control-panel">
-                    <div class="first-component">
+                    <!-- RGB -->
+                    <div class="first-component RGB">
                       <p>R</p>
                       <div class="r">
-                        <input id="first-slider" type="range" min="0" max="255" step="1" >
+                        <input id="first-slider-r" type="range" min="0" max="255" step="1" value="30">
                       </div>
-                      <input id="first-value" type="text" placeholder="R" maxlength="3">
-                      <p></p>
+                      <input id="first-value-r" type="text" placeholder="R" maxlength="3" autocomplete="off">
                     </div>
-                    <div class="second-component">
+                    <div class="second-component RGB">
                       <p>G</p>
                       <div class="g">
-                        <input id="second-slider" type="range" min="0" max="255" step="1">
+                        <input id="second-slider-g" type="range" min="0" max="255" step="1" value="30">
                       </div>
-                      <input id="second-value" type="text" placeholder="G" maxlength="3">
-                      <p></p>
+                      <input id="second-value-g" type="text" placeholder="G" maxlength="3" autocomplete="off">
                     </div>
-                    <div class="third-component">
+                    <div class="third-component RGB">
                       <p>B</p>
                       <div class="b">
-                        <input id="third-slider" type="range" min="0" max="255" step="1">
+                        <input id="third-slider-b" type="range" min="0" max="255" step="1" value="30">
                       </div>
-                      <input id="third-value" type="text" placeholder="B" maxlength="3">
-                      <p></p>
+                      <input id="third-value-b" type="text" placeholder="B" maxlength="3" autocomplete="off">
                     </div>
+                    <!-- RGB -->
+                    <!-- HSL -->
+                    <div class="first-component HSL" style="display: none;">
+                      <p>H</p>
+                      <div class="h">
+                        <input id="first-slider-h" type="range" min="0" max="360" step="1" value="30">
+                      </div>
+                      <input id="first-value-h" type="text" placeholder="H" maxlength="3" autocomplete="off">
+                    </div>
+                    <div class="second-component HSL" style="display: none;">
+                      <p>S</p>
+                      <div class="s">
+                        <input id="second-slider-s" type="range" min="0" max="100" step="1" value="30">
+                      </div>
+                      <input id="second-value-s" type="text" placeholder="S" maxlength="3" autocomplete="off">
+                    </div>
+                    <div class="third-component HSL" style="display: none;">
+                      <p>L</p>
+                      <div class="l">
+                        <input id="third-slider-l" type="range" min="0" max="100" step="1" value="30">
+                      </div>
+                      <input id="third-value-l" type="text" placeholder="L" maxlength="3" autocomplete="off">
+                    </div>
+                    <!-- HSL -->
                     <div>
                       <div class="color-system-button">
                         <span></span>
@@ -214,7 +236,7 @@
                           <p id="HSL">HSL</p>
                         </div>
                       </div>
-                      <input id="hex-value" class="hex-code" type="text" placeholder="Hex code" maxlength="7">
+                      <input id="hex-value" class="hex-code" type="text" placeholder="Hex code" minlength="4" maxlength="7">
                     </div>
                   </div>
                 </div>
