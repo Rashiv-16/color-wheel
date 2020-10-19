@@ -77,6 +77,7 @@ let colorCopier = (element) => {
     textArea.select()
     document.execCommand('copy');
     document.body.removeChild(textArea)
+    copied()
 }
 
 //function to convert rgb to hsl
@@ -547,6 +548,8 @@ thirdValueL.addEventListener('input', () => {
     }
 })
 
+
+//Hex Code Event Listener
 hexValue.addEventListener('input', () => {
     if(hexValue.value.length === 7 || hexValue.value.length === 4) {
         let validation = /^#(?:[0-9a-f]{3}){1,2}$/i
@@ -605,6 +608,18 @@ dropDownOptions.forEach((dropDownOption) => {
     })
 })
 
+let copiedElement = document.querySelector('.copied') 
+
+let copied = (e) => {
+    copiedElement.style.opacity = 1
+    copiedElement.style.bottom = `${window.innerHeight - 100}px`
+    console.log(window.innerHeight)
+    setTimeout(() => {
+        copiedElement.style.opacity = 0
+    }, 1200)
+}
+
+//////////////////////INITIAL
 //setting initial activeBaseColor background color to baseColorPicker
 //setting initial activeBaseColor Background color value into hexadecimal string as innerText of the baseColorPicker
 baseColorPicker.style.backgroundColor = getComputedStyleSheet(activeBaseColor, "backgroundColor");
@@ -612,3 +627,20 @@ backgroundColorValue(baseColorPicker, getComputedStyleSheet(activeBaseColor, "ba
 //setting initial active harmony rule to copied value and the the harmony rule element
 assignHarmonyRules(getComputedStyleSheet(activeBaseColor, "backgroundColor"))
 activeHarmonyRuleElement[0].setAttribute('title', getComputedStyleSheet(activeBaseColor, "backgroundColor"))
+
+
+/////////////////////////////////////////canvas
+
+let colorWheelContainer = document.querySelector('.color-wheel')
+let canvas = document.querySelector('canvas')
+let c = canvas.getContext('2d')
+
+let width = canvas.width = colorWheelContainer.clientHeight
+let height = canvas.height = colorWheelContainer.clientHeight
+
+let img = new Image();
+img.src = "color-wheel.png"
+img.onload = function () {
+    c.drawImage(img, 0, 0, height, height)
+    img.style.display = 'none'
+}

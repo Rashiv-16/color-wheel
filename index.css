@@ -6,7 +6,10 @@
 }
 
 body {
-    background: linear-gradient(to right bottom, #333, #222222);
+    /* background: linear-gradient(to right bottom, #333, #222222);
+    background: linear-gradient(to right bottom, rgb(184, 184, 184), #b9b9b9); */
+    background-color: #9e9e9e;
+    position: relative;
     /* width: 100vw; */
     min-height: 100vh;
     height: max-content;
@@ -245,6 +248,23 @@ main {
     position: relative;
     margin-top: 10px;
     border: 1px solid rgb(75, 75, 75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.color-wheel {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    /* border: 1px solid red; */
+    border-radius: 50%;
+
 }
 
 .color-controls-container {
@@ -410,15 +430,26 @@ main {
 }
 
 .copied-values {
-    padding: 20px 0;
     width: 25%;
-    height: 100%;
+    /* height: 100%; */
 
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    align-self: center;
+    align-self: stretch;
+}
+
+.copied-values > div {
+    margin:  20px 0;
+    width: 95%;
+    height: 100%;
+    border: 1px solid  rgb(75, 75, 75);
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .harmony-colors-value {
@@ -480,6 +511,8 @@ main {
     height: max-content;
     margin-bottom: 10px;
     overflow-x: scroll;
+    border: 1px solid  rgb(75, 75, 75);
+    padding: 5px;
 
     scrollbar-width: none;
 }
@@ -522,6 +555,21 @@ main {
     background-color: cyan;
 }
 
+.copied {
+    position: absolute !important;
+
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+    background-color: rgba(216, 191, 216, 0.5);
+    z-index: -2;
+    overflow: visible;
+
+    /* opacity: 0; */
+    transition: 1s opacity ease;
+    will-change: opacity;
+}
+
 @media screen and (max-width: 730px) {
 
     .logo-box {
@@ -553,7 +601,7 @@ main {
         align-items: center;
         margin: 0;
         max-width: none;
-        width: 80%;
+        width: 100%;
         padding: 10px;
         height: 150px;
     }
@@ -561,6 +609,7 @@ main {
     .base-color-value {
         width: 30%;
         margin-right: 30px;
+        margin-bottom: 20px;
         height: 50px;
     }
 
