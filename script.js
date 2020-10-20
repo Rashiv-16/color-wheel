@@ -73,6 +73,8 @@ let colorCopier = (element) => {
     const textArea = document.createElement('textarea');
     textArea.value = colorValue;
     document.body.appendChild(textArea);
+    textArea.style.position = "fixed"
+    textArea.style.top = "50%"
     textArea.focus()
     textArea.select()
     document.execCommand('copy');
@@ -612,10 +614,12 @@ let copiedElement = document.querySelector('.copied')
 
 let copied = (e) => {
     copiedElement.style.opacity = 1
-    copiedElement.style.bottom = `${window.innerHeight - 100}px`
+    copiedElement.style.zIndex = 1
+    copiedElement.style.bottom = `${10}px`
     console.log(window.innerHeight)
     setTimeout(() => {
         copiedElement.style.opacity = 0
+        copiedElement.style.zIndex = -2
     }, 1200)
 }
 
@@ -644,3 +648,39 @@ img.onload = function () {
     c.drawImage(img, 0, 0, height, height)
     img.style.display = 'none'
 }
+
+// canvas.addEventListener('click', (event) => {
+//     let pix = c.getImageData(event.layerX, event.layerY, 1, 1);
+//     console.log(pix)
+// })
+
+let add = document.querySelector('.add')
+let remove = document.querySelector('.remove')
+let linked = document.querySelector('.linked')
+
+let addStatus = {
+    status: false
+}
+
+let removeStatus = {
+    status: false
+}
+let linkedStatus = {
+    status: true
+}
+
+add.addEventListener('click', () => {
+    addStatus.status = !addStatus.status
+    if (addStatus.status === true){
+        console.log('why')
+        add.style.border = `3px double black`
+        canvas.style.cursor = 'pointer'
+        canvas.addEventListener('click', (event)=>{
+            let pix = c.getImageData(event.layerX, event.layerY, 1, 1);
+            console.log(pix)
+        })
+
+    } else {
+        add.style.border = `none`
+    }
+})

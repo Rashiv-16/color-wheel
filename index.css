@@ -61,6 +61,8 @@ main {
 
     display: flex;
     flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .action {
@@ -155,7 +157,7 @@ main {
     left: 0;
     overflow-y: scroll;
     /* border: 1px solid slateblue; */
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.9);
     scrollbar-width: none;
     display: flex;
     flex-flow: column nowrap;
@@ -176,6 +178,7 @@ main {
     padding: 5px 5px;
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     cursor: pointer;
     user-select: none;
 }
@@ -191,7 +194,7 @@ main {
 
 .drop-down-values > div > div {
     height: 100%;
-    border: 1px solid goldenrod;
+    /* border: 1px solid goldenrod; */
     padding: 10px;
 }
 
@@ -214,9 +217,9 @@ main {
 .drop-down-values__name {
     flex-grow: 2;
     text-align: right;
-    color: white;
+    color: rgb(37, 37, 37);
     /* text-shadow: 0 2px 10px black, 0 -2px 10px black; */
-    font-weight: 100;
+    font-weight: 500;
     letter-spacing: 1.5px;
 }
 
@@ -244,11 +247,12 @@ main {
 }
 
 .color-wheel-container {
-    height: 350px;
+    height: 450px;
     position: relative;
     margin-top: 10px;
     border: 1px solid rgb(75, 75, 75);
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
 
@@ -256,14 +260,54 @@ main {
 .color-wheel {
     width: 100%;
     height: 90%;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.color-wheel-buttons-container {
+    align-self: stretch;
+
+    height: max-content;
+    margin: 15px 0;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.color-wheel-buttons-container > button, .color-wheel-buttons-container > button:visited {
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    transition: 0.3s background-color ease, 0.1s border ease;
+    /* text-decoration: line-through; */
+}
+
+.color-wheel-buttons-container > button:not(:first-child) {
+    margin-left: 20px;
+}
+
+.color-wheel-buttons-container > button:hover {
+    cursor: pointer;
+    border: none;
+    background-color: rgb(185, 185, 185);
+}
+
+.color-wheel-buttons-container > button:active {
+    background-color: rgb(160, 160, 160);
+}
+
+
+
 canvas {
-    /* border: 1px solid red; */
-    border-radius: 50%;
+    border: 1px solid red;
+    /* border-radius: 50%; */
 
 }
 
@@ -445,6 +489,7 @@ canvas {
     width: 95%;
     height: 100%;
     border: 1px solid  rgb(75, 75, 75);
+    position: relative;
 
     display: flex;
     flex-flow: column nowrap;
@@ -556,16 +601,16 @@ canvas {
 }
 
 .copied {
-    position: absolute !important;
+    position: fixed !important;
 
     bottom: 10px;
+    /* top: 0; */
     left: 10px;
     padding: 10px;
-    background-color: rgba(216, 191, 216, 0.5);
-    z-index: -2;
-    overflow: visible;
+    background-color: rgba(216, 191, 216);
+    /* z-index: -2; */
 
-    /* opacity: 0; */
+    opacity: 0;
     transition: 1s opacity ease;
     will-change: opacity;
 }
