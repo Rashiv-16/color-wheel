@@ -1,4 +1,5 @@
 let colors = document.querySelectorAll('.colors')
+let baseColorContainer = document.querySelector('.base-color')
 let baseColors = document.querySelectorAll('.base-color > div')
 let harmonyColorsPickers = document.querySelectorAll('.harmony-colors-value > div')
 let baseColorPicker = document.querySelector('.base-color-value')
@@ -87,30 +88,39 @@ let rgbToHsl = (rgbValue) => {
     let rgbBuffer = [];
     rgbBuffer = rgbValue.slice(4,-1).split(",");
     let r = Number(rgbBuffer[0])/255;
-    let g = Number(rgbBuffer[1])/255;
-    let b = Number(rgbBuffer[2])/255;
+    let g = Number(rgbBuffer[1].slice(1))/255;
+    let b = Number(rgbBuffer[2].slice(1))/255;
     let s = 0;
     let h = 0;
+    let l = 0
+    let H = 0
+    let S = 0
+    let L = 0
     let max = Math.max(r,g,b);
     let min = Math.min(r,g,b);
 
-    //Luminance
-    let l = (max+min)/2;
-    let L = Math.round(l * 100);
+    if (r === g && g === b && b === r) {
+        l = (max+min)/2;
+        L = Math.round(l * 100);
+    } else {
+        //Luminance
+        l = (max+min)/2;
+        L = Math.round(l * 100);
 
-    //Saturation
-    if(min !== max) {
-        if(l <= 0.5) s=(max-min)/(max+min);
-        else s=(max-min)/(2.0-max-min);
+        //Saturation
+        if(min !== max) {
+            if(l <= 0.5) s=(max-min)/(max+min);
+            else s=(max-min)/(2.0-max-min);
+        }
+        S = Math.round(s * 100);
+
+        //Hue
+        if( r === max) h= (g-b)/(max-min);
+        else if (g === max) h = 2.0 + (b-r)/(max-min);
+        else h=4.0 + (r-g)/(max-min);
+        H = Math.round(h * 60);
+        if(H < 0) H = H + 360;
     }
-    let S = Math.round(s * 100);
-
-    //Hue
-    if( r === max) h= (g-b)/(max-min);
-    else if (g === max) h = 2.0 + (b-r)/(max-min);
-    else h=4.0 + (r-g)/(max-min);
-    let H = Math.round(h * 60);
-    if(H < 0) H = H + 360;
 
     return [H,S,L]
 }
@@ -156,6 +166,7 @@ let assignHarmonyRules = (activeColor) => {
                 activeHarmonyRuleElement[i].style.visibility = 'visible'
                 let backColor = getComputedStyleSheet(complimentaryElement[i], 'background-color');
                 activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+                activeHarmonyRuleElement[i].setAttribute('title', backColor);
 
                 harmonyColorsPickers[i].style.visibility = 'visible'
                 harmonyColorsPickers[i].style.backgroundColor = backColor;
@@ -167,6 +178,7 @@ let assignHarmonyRules = (activeColor) => {
                 activeHarmonyRuleElement[i].style.visibility = 'visible'
                 let backColor = getComputedStyleSheet(splitComplimentaryElement[i], 'background-color');
                 activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+                activeHarmonyRuleElement[i].setAttribute('title', backColor);
 
                 harmonyColorsPickers[i].style.visibility = 'visible'
                 harmonyColorsPickers[i].style.backgroundColor = backColor;
@@ -179,6 +191,7 @@ let assignHarmonyRules = (activeColor) => {
                 activeHarmonyRuleElement[i].style.visibility = 'visible'
                 let backColor = getComputedStyleSheet(analogousElement[i], 'background-color');
                 activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+                activeHarmonyRuleElement[i].setAttribute('title', backColor);
 
                 harmonyColorsPickers[i].style.visibility = 'visible'
                 harmonyColorsPickers[i].style.backgroundColor = backColor;
@@ -191,6 +204,7 @@ let assignHarmonyRules = (activeColor) => {
                 activeHarmonyRuleElement[i].style.visibility = 'visible'
                 let backColor = getComputedStyleSheet(monochromaticElement[i], 'background-color');
                 activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+                activeHarmonyRuleElement[i].setAttribute('title', backColor);
 
                 harmonyColorsPickers[i].style.visibility = 'visible'
                 harmonyColorsPickers[i].style.backgroundColor = backColor;
@@ -203,6 +217,7 @@ let assignHarmonyRules = (activeColor) => {
                 activeHarmonyRuleElement[i].style.visibility = 'visible'
                 let backColor = getComputedStyleSheet(shadesElement[i], 'background-color');
                 activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+                activeHarmonyRuleElement[i].setAttribute('title', backColor);
 
                 harmonyColorsPickers[i].style.visibility = 'visible'
                 harmonyColorsPickers[i].style.backgroundColor = backColor;
@@ -214,6 +229,7 @@ let assignHarmonyRules = (activeColor) => {
                 activeHarmonyRuleElement[i].style.visibility = 'visible'
                 let backColor = getComputedStyleSheet(triadElement[i], 'background-color');
                 activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+                activeHarmonyRuleElement[i].setAttribute('title', backColor);
 
                 harmonyColorsPickers[i].style.visibility = 'visible'
                 harmonyColorsPickers[i].style.backgroundColor = backColor;
@@ -226,6 +242,7 @@ let assignHarmonyRules = (activeColor) => {
                 activeHarmonyRuleElement[i].style.visibility = 'visible'
                 let backColor = getComputedStyleSheet(tetradElement[i], 'background-color');
                 activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+                activeHarmonyRuleElement[i].setAttribute('title', backColor);
 
                 harmonyColorsPickers[i].style.visibility = 'visible'
                 harmonyColorsPickers[i].style.backgroundColor = backColor;
@@ -237,6 +254,7 @@ let assignHarmonyRules = (activeColor) => {
                 activeHarmonyRuleElement[i].style.visibility = 'visible'
                 let backColor = getComputedStyleSheet(pentagramElement[i], 'background-color');
                 activeHarmonyRuleElement[i].style.backgroundColor = backColor;
+                activeHarmonyRuleElement[i].setAttribute('title', backColor);
 
                 harmonyColorsPickers[i].style.visibility = 'visible'
                 harmonyColorsPickers[i].style.backgroundColor = backColor;
@@ -274,6 +292,7 @@ let splitComplementaryColors = (hslColor) => {
         splitComplimentaryElement[i].setAttribute('title', getComputedStyleSheet(splitComplimentaryElement[i], 'background-color'))
     }
 }
+
 
 //analogous colors function
 let analogousColors = (hslColor) => {
@@ -420,11 +439,9 @@ colorSystemButton.addEventListener('click', (e) => {
     e.stopPropagation()
 
     colorSystem.classList.add('color-system-open');
-    console.log('y8')
 })
 
 colorSystem.addEventListener('click', (e) => {
-    console.log(e.target.id)
     e.stopPropagation()
     if (e.target.id === 'RGB') {
         system = 'RGB'
@@ -480,7 +497,7 @@ secondValueG.addEventListener('input', () => {
         secondValueG.setCustomValidity('Value should be between 0 and 255');
         secondValueG.reportValidity()
     } else {
-        secondValueR.setCustomValidity('');
+        secondValueG.setCustomValidity('');
         secondSliderG.value =secondValueG.value
         selectedValue.style.backgroundColor = `rgb(${firstValueR.value},${secondValueG.value},${thirdValueB.value})`
         hexCodeFunction()
@@ -557,6 +574,23 @@ hexValue.addEventListener('input', () => {
         let validation = /^#(?:[0-9a-f]{3}){1,2}$/i
         if(validation.test(hexValue.value)) {
             hexValue.setCustomValidity("")
+            if(hexValue.value.length === 7 && system === 'RGB') {
+                selectedValue.style.backgroundColor = `${hexValue.value}`
+                backColor = getComputedStyleSheet(selectedValue, 'backgroundColor')
+                rgbBuffer = backColor.slice(4,-1).split(",");
+                firstSliderR.value = firstValueR.value = `${rgbBuffer[0]}`
+                secondSliderG.value = secondValueG.value = `${rgbBuffer[1].slice(1)}`
+                thirdSliderB.value = thirdValueB.value = `${rgbBuffer[2].slice(1)}`
+            }
+
+            if(hexValue.value.length === 7 && system === 'HSL') {
+                selectedValue.style.backgroundColor = `${hexValue.value}`
+                backColor = getComputedStyleSheet(selectedValue, 'backgroundColor')
+                rgbBuffer = rgbToHsl(backColor)
+                firstSliderH.value = firstValueH.value = `${rgbBuffer[0]}`
+                secondSliderS.value = secondValueS.value = `${rgbBuffer[1]}`
+                thirdSliderL.value = thirdValueL.value = `${rgbBuffer[2]}`
+            }
         } else {
             hexValue.setCustomValidity("Invalid Hex Code")
             hexValue.reportValidity()
@@ -594,8 +628,6 @@ dropDownOptions.forEach((dropDownOption) => {
             harmonyColorsPickers[i].style.visibility = 'visible'
             harmonyColorsPickers[i].style.backgroundColor = backColor;
         }
-
-        console.log(firstChild.id)
         harmonyRulesContainer.id = firstChild.id
 
         //sets the visibility to hidden of the unused elements in active harmony values
@@ -623,6 +655,46 @@ let copied = (e) => {
     }, 1200)
 }
 
+let add = document.querySelector('.add')
+let remove = document.querySelector('.remove')
+
+let eventHandlerAdd = (event)=>{
+    let divEl = document.createElement('div')
+    divEl.setAttribute('class', 'colors')
+    backColor = getComputedStyleSheet(selectedValue, 'backgroundColor')
+    divEl.setAttribute('title', backColor)
+    rgbBuffer = backColor.slice(4,-1).split(",");
+    divEl.style.backgroundColor = `rgb(${rgbBuffer[0]}, ${rgbBuffer[1].slice(1)}, ${rgbBuffer[2].slice(1)})`
+    baseColorContainer.appendChild(divEl)
+    baseColors = document.querySelectorAll('.base-color > div')
+    for(let i=baseColors.length - 1; i>baseColors.length-2; i--) {
+        baseColors[i].addEventListener('click', classChanger)
+    }
+    if(baseColors.length > 1) {
+        remove.removeAttribute('disabled', 'false')
+        remove.style.cursor = 'pointer'
+    }
+}
+
+add.addEventListener('click', eventHandlerAdd)
+
+let eventHandlerRemove = (event) => {
+    activeBaseColor = document.querySelector('.active-base-color');
+    activeBaseColor.remove()
+    baseColors = document.querySelectorAll('.base-color > div')
+    baseColors[0].classList.add('active-base-color')
+    activeBaseColor = document.querySelector('.active-base-color');
+    backColor = getComputedStyleSheet(activeBaseColor, 'backgroundColor')
+    assignHarmonyRules(backColor)
+    if(baseColors.length < 2) {
+        remove.setAttribute('disabled', 'true')
+        remove.style.cursor = 'initial'
+    }
+}
+
+remove.addEventListener('click', eventHandlerRemove)
+
+
 //////////////////////INITIAL
 //setting initial activeBaseColor background color to baseColorPicker
 //setting initial activeBaseColor Background color value into hexadecimal string as innerText of the baseColorPicker
@@ -630,57 +702,195 @@ baseColorPicker.style.backgroundColor = getComputedStyleSheet(activeBaseColor, "
 backgroundColorValue(baseColorPicker, getComputedStyleSheet(activeBaseColor, "backgroundColor"))
 //setting initial active harmony rule to copied value and the the harmony rule element
 assignHarmonyRules(getComputedStyleSheet(activeBaseColor, "backgroundColor"))
-activeHarmonyRuleElement[0].setAttribute('title', getComputedStyleSheet(activeBaseColor, "backgroundColor"))
+activeHarmonyRuleElement[0].setAttribute('title', 'rgb(0, 0, 255)')
 
 
 /////////////////////////////////////////canvas
+/////////FEATURE UPDATE
 
-let colorWheelContainer = document.querySelector('.color-wheel')
-let canvas = document.querySelector('canvas')
-let c = canvas.getContext('2d')
+// let colorWheelContainer = document.querySelector('.color-wheel')
+// let canvas = document.querySelector('canvas')
+// let c = canvas.getContext('2d')
 
-let width = canvas.width = colorWheelContainer.clientHeight
-let height = canvas.height = colorWheelContainer.clientHeight
+// let width = canvas.width = colorWheelContainer.clientHeight
+// let height = canvas.height = colorWheelContainer.clientHeight
 
-let img = new Image();
-img.src = "color-wheel.png"
-img.onload = function () {
-    c.drawImage(img, 0, 0, height, height)
-    img.style.display = 'none'
-}
+// let img = new Image();
+// img.src = "color-wheel.png"
+// img.onload = function () {
+    // c.drawImage(img, -2, -2, height + 3, height + 3)
+    // img.style.display = 'none'
+// }
 
 // canvas.addEventListener('click', (event) => {
 //     let pix = c.getImageData(event.layerX, event.layerY, 1, 1);
 //     console.log(pix)
 // })
 
-let add = document.querySelector('.add')
-let remove = document.querySelector('.remove')
-let linked = document.querySelector('.linked')
+// let add = document.querySelector('.add')
+// let remove = document.querySelector('.remove')
+// let linked = document.querySelector('.linked')
 
-let addStatus = {
-    status: false
-}
+// let mouse = {
+//     x: undefined,
+//     y: undefined
+// }
+// canvas.addEventListener('mousemove', (e)=>{
+//     mouse.x = e.layerX;
+//     mouse.y = e.layerY
+// })
 
-let removeStatus = {
-    status: false
-}
-let linkedStatus = {
-    status: true
-}
+// let addStatus = {
+//     status: false
+// }
 
-add.addEventListener('click', () => {
-    addStatus.status = !addStatus.status
-    if (addStatus.status === true){
-        console.log('why')
-        add.style.border = `3px double black`
-        canvas.style.cursor = 'pointer'
-        canvas.addEventListener('click', (event)=>{
-            let pix = c.getImageData(event.layerX, event.layerY, 1, 1);
-            console.log(pix)
-        })
+// let removeStatus = {
+//     status: false
+// }
+// let linkedStatus = {
+//     status: true
+// }
+// let body = document.querySelector('body')
 
-    } else {
-        add.style.border = `none`
-    }
-})
+// let getDistance = (x1,y1,x2,y2) => {
+//     let disX = x2 - x1
+//     let disY = y2 - y1
+
+//     return dis = Math.sqrt(Math.pow(disX, 2) + Math.pow(disY, 2))
+// }
+
+// let Circle = function (x, y) {
+//     this.x = x;
+//     this.y = y;
+
+//     this.draw = () => {
+//         c.beginPath()
+//         c.arc(this.x, this.y, 10, 0, Math.PI*2, false)
+//         c.strokeStyle = "gray"
+//         c.stroke()
+//     }
+
+//     this.update = () => {
+//         if(getDistance(this.x, this.y, mouse.x, mouse.y) < 10) {
+//             console.log('cyka')
+//         }
+//         this.draw()
+//     }
+
+    
+// }
+
+
+
+
+// let x = 180
+// let dx = 0.1
+
+// let circles = [];
+// let animate = () => {
+//     requestAnimationFrame(animate)
+//     c.clearRect(0,0,width,height)
+
+
+//     let posX = x + (Math.abs(Math.sin(dx) * 10));
+//     let posY = 180;
+//     c.beginPath()
+//     c.arc(posX, posY, 10, 0, Math.PI * 2, true)
+//     c.strokeStyle = 'black'
+//     c.stroke()
+//     dx = dx + 0.05
+    // c.drawImage(img, -2, -2, height + 3, height + 3)
+    // circles.forEach((circle) => {
+    //     circle.update()
+    // })
+    // console.log(mouse)
+// }
+
+// animate()
+
+// let canvasContainer = document.querySelector('.color-wheel > div')
+
+// let getPosition = (event, outerEvent) => {
+//     console.log(event.layerX, event.layerY)
+//     console.log(outerEvent.layerX, outerEvent.layerY)
+//         outerEvent.target.style.top = `${event.layerY}px`
+//         outerEvent.target.style.left = `${event.layerX}px`
+// }
+
+
+// let div =  (x,y, eve) => {
+    
+    
+//     let divEle = document.createElement('div')
+//     divEle.style.width = '15px'
+//     divEle.style.height = '15px'
+//     divEle.style.top = `${y}px`
+//     divEle.style.left = `${x}px`
+//     divEle.style.transform = `translate(-50%, -50%)`
+//     divEle.style.borderRadius = `50%`
+//     divEle.style.position = 'absolute'
+//     divEle.style.border = '1px solid black'
+//     console.log(x, y)
+//     canvasContainer.appendChild(divEle)
+
+    // divEle.addEventListener('click', (e)=>{
+    //     let eve = e
+    //     console.log(e.target)
+    //     canvasContainer.addEventListener('mousemove', (event) => {
+    //         getPosition(event, eve)
+    //     })
+        // canvasContainer.addEventListener('mousemove', (e)=> {
+        //     if(e.target === divEle) {
+        //         console.log('goooo')
+        //         e.target.style.top = `${event.layerY - 7.5}px`
+        //         e.target.style.left = `${event.layerX - 7.5}px`
+        //         console.log(e.layerY)
+        //     }
+        // })
+    // })
+
+// }
+
+// let eventHandler = (event)=>{
+//     pix = c.getImageData(event.layerX, event.layerY, 1, 1);
+//     let divEl = document.createElement('div')
+//     divEl.setAttribute('class', 'colors')
+//     divEl.style.backgroundColor = `rgb(${pix.data[0]}, ${pix.data[1]}, ${pix.data[2]})`
+//     baseColorContainer.appendChild(divEl)
+
+//     div(event.layerX, event.layerY, event)
+
+
+    // circles.push(new Circle(event.layerX, event.layerY))
+    // animate()
+
+
+
+
+
+    //sets back to initial setup
+//     canvas.style.cursor = 'initial'
+//     add.style.border = `none`
+//     addStatus.status = !addStatus.status
+//     canvas.removeEventListener('click', eventHandler)
+//     baseColors = document.querySelectorAll('.base-color > div')
+//     for(let i=baseColors.length - 1; i>baseColors.length-2; i--) {
+//         baseColors[i].addEventListener('click', classChanger)
+//     }
+// }
+
+// add.addEventListener('click', () => {
+//     addStatus.status = !addStatus.status
+//     if (addStatus.status === true){
+//         let pix = []
+//         add.style.border = `3px double black`
+//         canvas.style.cursor = 'pointer'
+//         canvas.addEventListener('click', eventHandler)
+//     } else {
+//         add.style.border = `none`
+//         canvas.style.cursor = 'initial'
+//         canvas.removeEventListener('click', eventHandler)
+//     }
+// })
+
+////////////////////////////////////////////////////

@@ -81,11 +81,6 @@
             <div class="action">
                 <div class="base-color">
                     <div class="colors active-base-color"></div>
-                    <div class="colors"></div>
-                    <div class="colors"></div>
-                    <div class="colors"></div>
-                    <div class="colors"></div>
-
                 </div>
                 <div class="harmony-rules">
                   <div id="complementary" class="harmony-rules-values">
@@ -171,94 +166,94 @@
                       <div class="drop-down-values__name">Pentagram</div>
                     </div>
                   </div>
-                  <div class="color-wheel">
-                    <canvas></canvas>
+                  <!-- <div class="color-wheel">
+                    <div>
+                      <canvas></canvas>
+                    </div>
+                  </div> -->
+
+                  <div class="color-controls-container">
+                    <div class="selected-color">
+                      <div></div>
+                    </div>
+                    <div class="control-panel">
+                      <!-- RGB -->
+                      <div class="first-component RGB">
+                        <p>R</p>
+                        <div class="r">
+                          <input id="first-slider-r" type="range" min="0" max="255" step="1" value="255">
+                        </div>
+                        <input id="first-value-r" type="text" placeholder="R" maxlength="3" autocomplete="off" value="255">
+                      </div>
+                      <div class="second-component RGB">
+                        <p>G</p>
+                        <div class="g">
+                          <input id="second-slider-g" type="range" min="0" max="255" step="1" value="255">
+                        </div>
+                        <input id="second-value-g" type="text" placeholder="G" maxlength="3" autocomplete="off" value="255">
+                      </div>
+                      <div class="third-component RGB">
+                        <p>B</p>
+                        <div class="b">
+                          <input id="third-slider-b" type="range" min="0" max="255" step="1" value="0">
+                        </div>
+                        <input id="third-value-b" type="text" placeholder="B" maxlength="3" autocomplete="off" value="0">
+                      </div>
+                      <!-- RGB -->
+                      <!-- HSL -->
+                      <div class="first-component HSL" style="display: none;">
+                        <p>H</p>
+                        <div class="h">
+                          <input id="first-slider-h" type="range" min="0" max="360" step="1" value="60">
+                        </div>
+                        <input id="first-value-h" type="text" placeholder="H" maxlength="3" autocomplete="off" value="60">
+                      </div>
+                      <div class="second-component HSL" style="display: none;">
+                        <p>S</p>
+                        <div class="s">
+                          <input id="second-slider-s" type="range" min="0" max="100" step="1" value="100">
+                        </div>
+                        <input id="second-value-s" type="text" placeholder="S" maxlength="3" autocomplete="off" value="100">
+                      </div>
+                      <div class="third-component HSL" style="display: none;">
+                        <p>L</p>
+                        <div class="l">
+                          <input id="third-slider-l" type="range" min="0" max="100" step="1" value="50">
+                        </div>
+                        <input id="third-value-l" type="text" placeholder="L" maxlength="3" autocomplete="off" value="50">
+                      </div>
+                      <!-- HSL -->
+                      <div>
+                        <div class="color-system-button">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <div class="color-system">
+                            <p id="RGB">RGB</p>
+                            <p id="HSL">HSL</p>
+                          </div>
+                        </div>
+                        <input id="hex-value" class="hex-code" type="text" placeholder="Hex code" minlength="4" maxlength="7" value="#ffff00">
+                      </div>
+                    </div>
                   </div>
                   <div class="color-wheel-buttons-container">
-                    <button class="add">+</button>
-                    <button class="remove">-</button>
-                    <button class="linked">&#128279</button>
+                    <button class="add" title="Add Color">+</button>
+                    <button class="remove" title="Remove Color" disabled>-</button>
+                    <button class="linked" title="This feature is coming soon" disabled>&#128279</button>
                   </div>
                 </div>
-                <div class="color-controls-container">
-                  <div class="selected-color">
-                    <div></div>
-                  </div>
-                  <div class="control-panel">
-                    <!-- RGB -->
-                    <div class="first-component RGB">
-                      <p>R</p>
-                      <div class="r">
-                        <input id="first-slider-r" type="range" min="0" max="255" step="1" value="30">
-                      </div>
-                      <input id="first-value-r" type="text" placeholder="R" maxlength="3" autocomplete="off">
-                    </div>
-                    <div class="second-component RGB">
-                      <p>G</p>
-                      <div class="g">
-                        <input id="second-slider-g" type="range" min="0" max="255" step="1" value="30">
-                      </div>
-                      <input id="second-value-g" type="text" placeholder="G" maxlength="3" autocomplete="off">
-                    </div>
-                    <div class="third-component RGB">
-                      <p>B</p>
-                      <div class="b">
-                        <input id="third-slider-b" type="range" min="0" max="255" step="1" value="30">
-                      </div>
-                      <input id="third-value-b" type="text" placeholder="B" maxlength="3" autocomplete="off">
-                    </div>
-                    <!-- RGB -->
-                    <!-- HSL -->
-                    <div class="first-component HSL" style="display: none;">
-                      <p>H</p>
-                      <div class="h">
-                        <input id="first-slider-h" type="range" min="0" max="360" step="1" value="30">
-                      </div>
-                      <input id="first-value-h" type="text" placeholder="H" maxlength="3" autocomplete="off">
-                    </div>
-                    <div class="second-component HSL" style="display: none;">
-                      <p>S</p>
-                      <div class="s">
-                        <input id="second-slider-s" type="range" min="0" max="100" step="1" value="30">
-                      </div>
-                      <input id="second-value-s" type="text" placeholder="S" maxlength="3" autocomplete="off">
-                    </div>
-                    <div class="third-component HSL" style="display: none;">
-                      <p>L</p>
-                      <div class="l">
-                        <input id="third-slider-l" type="range" min="0" max="100" step="1" value="30">
-                      </div>
-                      <input id="third-value-l" type="text" placeholder="L" maxlength="3" autocomplete="off">
-                    </div>
-                    <!-- HSL -->
-                    <div>
-                      <div class="color-system-button">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <div class="color-system">
-                          <p id="RGB">RGB</p>
-                          <p id="HSL">HSL</p>
-                        </div>
-                      </div>
-                      <input id="hex-value" class="hex-code" type="text" placeholder="Hex code" minlength="4" maxlength="7">
-                    </div>
-                  </div>
-                </div>
-            </div>
+              </div>
             <div class="copied-values">
-              <div>
-                <div class="harmony-colors-value">
-                  <div title="Copy"></div>
-                  <div title="Copy"></div>
-                  <div title="Copy"></div>
-                  <div title="Copy"></div>
-                  <div title="Copy"></div>
-                  <div title="Copy"></div>
-              </div>
-              <div class="base-color-value" title="Copy"></div>
-
-              </div>
+              <div class="harmony-colors-value">
+                <div title="Copy"></div>
+                <div title="Copy"></div>
+                <div title="Copy"></div>
+                <div title="Copy"></div>
+                <div title="Copy"></div>
+                <div title="Copy"></div>
+            </div>
+            <div class="base-color-value" title="Copy"></div>
             </div>
         </section>
     </main>

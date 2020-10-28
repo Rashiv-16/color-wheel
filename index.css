@@ -60,7 +60,7 @@ main {
     height: max-content;
 
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
 }
@@ -157,7 +157,7 @@ main {
     left: 0;
     overflow-y: scroll;
     /* border: 1px solid slateblue; */
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(200, 200, 200, 0.9);
     scrollbar-width: none;
     display: flex;
     flex-flow: column nowrap;
@@ -243,17 +243,19 @@ main {
 }
 
 .harmony-rules {
-    border: 1px solid rgb(75, 75, 75);
+    border: 3px solid rgb(75, 75, 75);
+    /* box-shadow: 0px 0px 10px black; */
 }
 
 .color-wheel-container {
-    height: 450px;
+    height: 380px;
     position: relative;
     margin-top: 10px;
-    border: 1px solid rgb(75, 75, 75);
+    border: 3px solid rgb(75, 75, 75);
+    /* box-shadow: 0px 0px 10px black; */
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
 }
@@ -291,10 +293,13 @@ main {
 
 .color-wheel-buttons-container > button:not(:first-child) {
     margin-left: 20px;
+
+}
+.color-wheel-buttons-container > button:first-child {
+    cursor: pointer;
 }
 
 .color-wheel-buttons-container > button:hover {
-    cursor: pointer;
     border: none;
     background-color: rgb(185, 185, 185);
 }
@@ -303,16 +308,24 @@ main {
     background-color: rgb(160, 160, 160);
 }
 
+.color-wheel > div {
+    width: 363px;
+    height: 363px;
+    border-radius: 50%;
+    position: relative;
+}
 
 
 canvas {
-    border: 1px solid red;
-    /* border-radius: 50%; */
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    position: relative;
 
 }
 
 .color-controls-container {
-    border: 1px solid rgb(75, 75, 75);
+    border: 3px solid rgb(129, 129, 129);
+    /* box-shadow: 0px 0px 10px black; */
     margin-top: 10px;
     height: 200px;
     display: flex;
@@ -328,10 +341,12 @@ canvas {
 }
 
 .selected-color > div {
-    background-color: rebeccapurple;
-    border: 1px solid rgb(75, 75, 75);
+    background-color: rgb(255, 255, 0);
+    /* border: 1px solid rgb(75, 75, 75); */
+    box-shadow: 0px 0px 10px black;
     height: 64%;
     width: 80%;
+    border-radius: 10px;
     max-width: 110px;
     margin: 0 auto;
 }
@@ -474,7 +489,11 @@ canvas {
 }
 
 .copied-values {
-    width: 25%;
+    width: 95%;
+    border: 3px solid  rgb(75, 75, 75);
+    /* box-shadow: 0px 0px 10px black; */
+    max-width: 900px;
+    margin: 0 auto;
     /* height: 100%; */
 
     display: flex;
@@ -484,7 +503,7 @@ canvas {
     align-self: stretch;
 }
 
-.copied-values > div {
+/* .copied-values > div {
     margin:  20px 0;
     width: 95%;
     height: 100%;
@@ -495,7 +514,7 @@ canvas {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .harmony-colors-value {
     width: 50%;
@@ -556,7 +575,8 @@ canvas {
     height: max-content;
     margin-bottom: 10px;
     overflow-x: scroll;
-    border: 1px solid  rgb(75, 75, 75);
+    border: 3px solid  rgb(75, 75, 75);
+    /* box-shadow: 0px 0px 10px black; */
     padding: 5px;
 
     scrollbar-width: none;
@@ -569,8 +589,8 @@ canvas {
 .base-color > div {
     display: block;
     /* border: 1px solid goldenrod; */
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    height: 50px;
     transition: 0.1s border linear;
     flex-shrink: 0;
 
@@ -586,18 +606,6 @@ canvas {
 
 .base-color > div:nth-child(1) {
     background-color: yellow;
-}
-.base-color > div:nth-child(2) {
-    background-color: rgb(0,255,0);
-}
-.base-color > div:nth-child(3) {
-    background-color: blue;
-}
-.base-color > div:nth-child(4) {
-    background-color: blueviolet;
-}
-.base-color > div:nth-child(5) {
-    background-color: cyan;
 }
 
 .copied {
@@ -615,63 +623,58 @@ canvas {
     will-change: opacity;
 }
 
-@media screen and (max-width: 730px) {
-
-    .logo-box {
-        margin: 15px;
-    }
-
-    .main-content {
-        flex-flow: column nowrap;
-        /* justify-content: flex-start;
-        align-items: flex-start; */
-    }
-
-    .action {
-        width: 100%;
-    }
-
-    .drop-down {
-        height: 180px;
-    }
-
-    .base-color, .harmony-rules, .color-wheel-container, .color-controls-container{
-        width: 95%;
-    }
-
-    .harmony-colors-value {
-        display: flex;
-        flex-flow: row wrap; 
-        justify-content: space-evenly;
-        align-items: center;
-        margin: 0;
-        max-width: none;
-        width: 100%;
-        padding: 10px;
-        height: 150px;
-    }
-
-    .base-color-value {
-        width: 30%;
-        margin-right: 30px;
-        margin-bottom: 20px;
-        height: 50px;
-    }
-
-    .harmony-colors-value > div{
-        margin: 0 !important;
-        width: 35%;
-        max-width: 140px;
-    }
-
-    .copied-values {
-        flex-flow: row nowrap;
-        width: 100%;
-        padding: 0;
-    }
-
+.logo-box {
+    margin: 15px;
 }
 
-@media screen and (max-width: 500px) {
-
+.main-content {
+    flex-flow: column nowrap;
+    /* justify-content: flex-start;
+    align-items: flex-start; */
 }
+
+.action {
+    width: 100%;
+}
+
+.drop-down {
+    height: 180px;
+}
+
+.base-color, .harmony-rules, .color-wheel-container, .color-controls-container{
+    width: 95%;
+}
+
+.harmony-colors-value {
+    display: flex;
+    flex-flow: row wrap; 
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    max-width: none;
+    width: 100%;
+    padding: 10px;
+    height: 150px;
+}
+
+.base-color-value {
+    width: 30%;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+.harmony-colors-value > div{
+    margin: 0 !important;
+    width: 35%;
+    max-width: 140px;
+}
+
+/* .copied-values {
+    flex-flow: row nowrap;
+    width: 100%;
+    max-width: 900px;
+    padding: 0;
+    margin: 0 auto;
+    border: 1px solid rgb(75, 75, 75);
+} */
